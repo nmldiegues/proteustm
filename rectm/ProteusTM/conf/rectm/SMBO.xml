@@ -1,0 +1,13 @@
+<evaluation.runtimeSimul.configurations.ConfigurationSelectorConfig
+        mode="GAUSSIAN"
+        randomSeed="654321"
+        maxExplorations="15"
+        bootstrapConfigs=""
+        computeMaxVarianceFromAllWorkloads="true"
+        normalizeVariabilityWRTMean="true"
+        normalizeReturnedVariance="false"
+        stopCondition="EIP_DERIVATIVE"
+        higherBetter="true"
+        EIP_threshold="0.01"
+        doLastJump="false"
+        />

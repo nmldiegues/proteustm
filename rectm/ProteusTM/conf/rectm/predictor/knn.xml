@@ -1,0 +1,8 @@
+<utilityMatrix.mahout.knn.KNNConfig
+        numNeighbors="2"
+        similarity="EUCLIDEAN"
+        weighting="WEIGHTED"
+        userItemSimilarity="USER_SIMILARITY"
+        itemBasedNeighborhood="true"
+        disablePrintToFile="true"
+        />

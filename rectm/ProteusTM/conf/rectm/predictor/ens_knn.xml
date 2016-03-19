@@ -1,0 +1,6 @@
+<evaluation.runtimeSimul.configurations.KNNEnsembleRatingPredictorConfig
+        numPredictors="10"
+        baseConfig="ProteusTM/conf/rectm/predictor/knn.xml"
+        baggingPercentage=".66"
+        disablePrintToFile="true"
+        />

@@ -1,0 +1,82 @@
+########################################
+# set platform/OS-specific variables
+SOLARIS_CPP = g++
+
+MFLAGS = -j2
+
+########################################
+# set platform specific variables
+OS_NAME = $(shell uname -s)
+
+CPPFLAGS += -DSB7_TT_LINUX -pthread
+LDFLAGS += -lrt -lpthread
+CPP = g++
+
+########################################
+# set architecture specific flags
+ifeq ($(ARCH), )
+    ARCH_NAME = $(shell uname -m)
+endif
+
+ARCH = x86_64
+CPPFLAGS += -D SB7_TT_X86 -D SB7_TT_64
+
+CPPFLAGS += $(LPDSTM_CPPFLAGS)
+LDFLAGS += $(LPDSTM_LDFLAGS)
+
+
+########################################
+# set initial values for the core variables
+
+# dirs to use
+SRC_DIR = ./src
+SRC_DOCS_DIR = ./docs
+
+TARGET_DIR = ./target
+OBJ_DIR = ./target/obj
+TARGET_DOCS_DIR = ./target/docs
+
+CPPFLAGS += -w -Wno-non-template-friend
+CPPFLAGS += -g -O2
+
+#######################################
+# include library to use
+
+include Defines.common.mk
+include ./Makefile.flags
+
+CPPFLAGS += -D REDUCED_TM_API -DSB7_TT_LINUX
+
+
+#######################################
+# collect malloc stats
+CPPFLAGS_COLLECT_MALLOC_STATS = -D COLLECT_MALLOC_STATS
+
+ifeq ($(COLLECT_MALLOC_STATS), yes)
+	CPPFLAGS += $(CPPFLAGS_COLLECT_MALLOC_STATS)
+endif
+
+
+#######################################
+# collect txmm stats
+CPPFLAGS_COLLECT_TXMM_STATS = -D COLLECT_TXMM_STATISTICS
+
+ifeq ($(COLLECT_TXMM_STATS), yes)
+	CPPFLAGS += $(CPPFLAGS_COLLECT_TXMM_STATS)
+endif
+
+#######################################
+# collect total size stats
+CPPFLAGS_COLLECT_TOTAL_SIZE_STATS = -D COLLECT_TOTAL_SIZE_STATISTICS
+
+ifeq ($(COLLECT_TOTAL_SIZE_STATS), yes)
+	CPPFLAGS += $(CPPFLAGS_COLLECT_TOTAL_SIZE_STATS)
+endif
+
+#######Change workload  at runtime
+ifdef CHANGEWORKLOAD
+CPPFLAGS+= -DCHANGEWORKLOAD
+   ifdef WORKLOAD_PHASE_DURATION
+   CPPFLAGS+= $(WORKLOAD_PHASE_DURATION)
+   endif
+endif

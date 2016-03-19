@@ -1,0 +1,4 @@
+<evaluation.runtimeSimul.configurations.WorkloadSelectorConfig
+        mode="RANDOM"
+        randomSeed="192837465"
+        />

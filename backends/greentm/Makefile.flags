@@ -1,0 +1,5 @@
+CFLAGS   += -w $(HTM_RETRIES) $(RETRY_POLICY) $(STARTING_MODE) $(NO_ADAPTIVITY) ${CONTROLLER_SLEEP} ${KPI_TRACKING} ${SMOOTHING} ${CONSECUTIVE_THRESHOLD}  ${ANOMALY_THRESHOLD}
+
+CPPFLAGS := $(CFLAGS)
+LIBS     += $(CFLAGS) -I$(HOME)/include/ -L$(HOME)/lib/ -I../lib/ -I../../../rapl-power/ -I ../../../stms/norec/ -I ../../../stms/tinystm/include -I ../../../stms/tl2/ -I ../../../stms/swisstm/include/ -lrt -mrtm -lm -L../../../rapl-power/ -lrapl -L../../../stms/norec/ -L../../../stms/tinystm/lib -L../../../stms/tl2/ -L../../../stms/swisstm/lib/ -lstm -lnorec -ltl2 -lwlpdstm -ltcmalloc -lpthread
+LDFLAGS  += $(LIBS)
